@@ -8,6 +8,28 @@
     <p>This is my page</p>
     
     <script>
+      
+      // Calls the fetch() method, passing it URL of image.
+      let promise = fetch('https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg');
+      
+      // To respond to successful completion (.then() method of promise object). We use 'response.ok' property (a Boolean) and set it to false for errors in fetching 
+      let promise2 = promise.then(response => {
+       if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      } else {
+        return response.blob();   //returns a promise
+      }
+      });
+      
+      let promise3 = promise2.then(myBlob => {
+        let objectURL = URL.createObjectURL(myBlob);  // myBlob is the Blob returned from resolved promise2.
+        let image = document.createObject('img');     // create an element, 'img' 
+        image.src = objectURL;                        // set image's sourse to the URL of the image we want
+        document.body.appendChild(image);             // and finally append this image to our document
+      }) 
+        
+      
+      
     </script>
   </body>
 </html>
