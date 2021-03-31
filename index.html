@@ -8,7 +8,7 @@
     <p>This is my page</p>
     
     <script>
-      
+      /*
       // Calls the fetch() method, passing it URL of image.
       let promise = fetch('https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg');
       
@@ -27,6 +27,27 @@
         image.src = objectURL;                        // set image's sourse to the URL of the image we want
         document.body.appendChild(image);             // and finally append this image to our document
       }) 
+      */
+      
+      // The above can be written in another way:
+      
+      fetch('https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg')
+      .then(response => {
+        if (!responce.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+          return response.blob();
+        }
+      })
+      .then(myBlob =>{
+        let objectURL = URL.createObjectURL(myBlob);
+        let image = document.createElement('img');
+        image.src = objectURL;
+        document.body.appendChild(image);
+      })
+      .catch(e => {
+        console.log('There has been a problem with your fetch operation: ' + e.message);
+      });
     
     </script>
   </body>
