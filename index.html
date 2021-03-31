@@ -10,7 +10,7 @@
     <script>
       
       // Calls the fetch() method, passing it URL of image.
-      let promise = fetch('coffee.png');
+      let promise = fetch('https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg');
       
       // To respond to successful completion (.then() method of promise object). We use 'response.ok' property (a Boolean) and set it to false for errors in fetching 
       let promise2 = promise.then(response => {
