@@ -33,7 +33,7 @@
       
       fetch('https://raw.githubusercontent.com/mdn/learning-area/master/javascript/asynchronous/promises/coffee.jpg')
       .then(response => {
-        if (!responce.ok) {
+        if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         } else {
           return response.blob();
